@@ -3,8 +3,9 @@ from flask import Flask, render_template, request, redirect, url_for
 import datetime # Para obtener la fecha y hora actual
 import spacy # ¡Importamos spaCy!
 
-### NUEVO ### - Importamos la función desde el otro archivo
+### NUEVO ### - Importamos las funciones de nuestros otros archivos
 from simulador import ejecutar_todas_simulaciones
+from dashboard_generator import generar_dashboard_data # <-- ESTA LÍNEA FALTABA
 
 # Creamos la aplicación web.
 app = Flask(__name__)
@@ -126,17 +127,24 @@ def ver_tickets():
     return render_template('tickets.html', tickets=tickets_db)
 
 
-### NUEVO ### - Las rutas para el simulador que faltaban
-# 1. Ruta para mostrar la página del simulador
+# Las rutas para el simulador
 @app.route('/simulador')
 def pagina_simulador():
     return render_template('simulador.html')
 
-# 2. Ruta que se activa al presionar el botón de "Ejecutar"
 @app.route('/ejecutar_simulacion', methods=['POST'])
 def ejecutar_simulacion():
     resultados_simulacion = ejecutar_todas_simulaciones()
     return render_template('simulador.html', resultados=resultados_simulacion)
+
+
+### NUEVO ### - La ruta para el Dashboard que faltaba
+@app.route('/dashboard')
+def dashboard():
+    # 1. Llama a la función para generar los datos y el gráfico
+    kpis = generar_dashboard_data(tickets_db)
+    # 2. Muestra la página HTML y le pasa los KPIs
+    return render_template('dashboard.html', kpis=kpis)
 
 
 # --- Iniciar la Aplicación ---
