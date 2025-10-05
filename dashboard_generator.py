@@ -1,3 +1,7 @@
+import matplotlib
+# ¡ESTA ES LA LÍNEA MÁGICA! Debe ir ANTES de importar pyplot.
+# Le dice a Matplotlib que use un motor gráfico que no necesita ventanas.
+matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
 import os
 
@@ -43,3 +47,4 @@ def generar_dashboard_data(tickets):
     plt.close(fig) # Cerramos la figura para liberar memoria
 
     return kpis
+

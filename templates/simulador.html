@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Despliegue</title>
-    <!-- Usamos el mismo estilo que las otras páginas para consistencia -->
+    <!-- Usamos el estilo unificado -->
     <style>
         /* --- Estilos Generales para Todas las Páginas --- */
         body { 
@@ -57,10 +57,12 @@
     </style>
 </head>
 <body>
+    <!-- ¡ESTE ES EL MENÚ CORREGIDO! -->
     <nav>
         <a href="/">Crear Ticket</a>
         <a href="/tickets">Ver Tickets</a>
         <a href="/simulador">Simulador de Despliegue</a>
+        <a href="/dashboard">Dashboard</a>
     </nav>
 
     <h1>Simulador de Estrategias de Despliegue ⚙️</h1>
@@ -68,7 +70,8 @@
 
     <div class="button-container">
         <form action="/ejecutar_simulacion" method="POST">
-            <button type="submit">Ejecutar Simulaciones</button>
+            <!-- Le añadimos la clase sim-button para que sea verde -->
+            <button type="submit" class="sim-button">Ejecutar Simulaciones</button>
         </form>
     </div>
 
@@ -100,6 +103,4 @@
 
 </body>
 </html>
-
-
 
